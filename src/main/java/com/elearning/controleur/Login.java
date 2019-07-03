@@ -59,7 +59,7 @@ public class Login {
             request.getSession(true).setAttribute("login", username);
 
             if (username.equals("") || password.equals("")) {
-
+ 
                 return "login";
             } else {
                 if (type.equals("etudiant")) {
