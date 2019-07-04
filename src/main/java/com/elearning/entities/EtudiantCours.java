@@ -6,31 +6,51 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 @Entity
-public class EtudiantCours {
+public class EtudiantCours implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_etudiant;
-	private Long id_cours;
-	private Date Date_inscription;
-	private Boolean valider;
+     Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "idetudiant", referencedColumnName = "id")
+    private Utilisateur etudiant;
 
-    public Long getId_etudiant() {
-        return id_etudiant;
+    @ManyToOne
+    @JoinColumn(name = "idCours", referencedColumnName = "id")
+    private Cours cours;
+
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date Date_inscription;
+    private Boolean valider;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setId_etudiant(Long id_etudiant) {
-        this.id_etudiant = id_etudiant;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getId_cours() {
-        return id_cours;
+    public Utilisateur getEtudiant() {
+        return etudiant;
     }
 
-    public void setId_cours(Long id_cours) {
-        this.id_cours = id_cours;
+    public void setEtudiant(Utilisateur etudiant) {
+        this.etudiant = etudiant;
+    }
+
+    public Cours getCours() {
+        return cours;
+    }
+
+    public void setCours(Cours cours) {
+        this.cours = cours;
     }
 
     public Date getDate_inscription() {
@@ -49,6 +69,4 @@ public class EtudiantCours {
         this.valider = valider;
     }
 
-        
-        
 }

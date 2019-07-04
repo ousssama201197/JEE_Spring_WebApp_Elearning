@@ -1,25 +1,40 @@
 package com.elearning.entities;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Quiz {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String Question;
-	private String choix1;
-	private String choix3;
-	private String reponse;
-	private String choix2;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+      @ManyToOne
+    @JoinColumn(name = "idexamen", referencedColumnName = "id")
+    private Examen examen;
+      
+    private String Question;
+    private String choix1;
+    private String choix3;
+    private String choix2;
+    private String reponse;
 
+    public Examen getExamen() {
+        return examen;
+    }
+
+    public void setExamen(Examen examen) {
+        this.examen = examen;
+    }
+
+    
+    
+    
     public Long getId() {
         return id;
     }
@@ -67,8 +82,5 @@ public class Quiz {
     public void setChoix2(String choix2) {
         this.choix2 = choix2;
     }
-        
-        
-        
 
 }

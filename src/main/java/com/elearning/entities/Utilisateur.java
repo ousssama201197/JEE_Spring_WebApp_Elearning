@@ -40,6 +40,24 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
+    public String getMatricule() {
+        return matricule;
+    }
+
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    
+
     public Long getId() {
         return id;
     }

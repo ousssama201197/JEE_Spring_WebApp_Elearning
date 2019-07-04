@@ -24,7 +24,7 @@ public class Cours {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idcours;
+    private Long id;
 
     public Cours() {
     }
@@ -35,13 +35,14 @@ public class Cours {
     @ManyToOne
     @JoinColumn(name="idenseignant" , referencedColumnName = "id")
     private Enseignant enseignant ;
+    
 
     public Long getIdcours() {
-        return idcours;
+        return id;
     }
 
     public void setIdcours(Long idcours) {
-        this.idcours = idcours;
+        this.id = idcours;
     }
 
     public String getName() {

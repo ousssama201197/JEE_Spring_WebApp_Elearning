@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,17 +24,19 @@ public class Document {
     
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long document_id;
-      @Column(name = "url") 
+    private Long id;
+     
+    @ManyToOne
+    @JoinColumn(name = "ideCours", referencedColumnName = "id")
+    private Cours cours;
+    
     private String url;
-
-    public Long getDocument_id() {
-        return document_id;
-    }
-
-    public void setDocument_id(Long document_id) {
-        this.document_id = document_id;
-    }
+    private String type;
+    private String description;
+    
+    
+      
+ 
 
   
 
