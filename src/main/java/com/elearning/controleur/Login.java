@@ -22,7 +22,6 @@ public class Login {
 
     @GetMapping
     public String m(HttpServletRequest request) {
-
         try {
             System.err.println(request.getSession(true).getAttribute("login").toString());
             return "index";
@@ -31,6 +30,15 @@ public class Login {
             return "login";
         }
 
+    }
+    
+       @GetMapping(value="/login/mdpoublier/retauration")
+    public String mdpoublier(HttpServletRequest request) {
+        String email = request.getParameter("email");
+       if(email){
+       
+       
+       } 
     }
 
     @GetMapping(value = "/login")
@@ -86,12 +94,5 @@ public class Login {
 //        inputfile.close();
 //        return "index";
 //    }
-    private static String getFilename(Part part) {
-        for (String cd : part.getHeader("content-disposition").split(";")) {
-            if (cd.trim().startsWith("filename")) {
-                return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-            }
-        }
-        return null;
-    }
+    
 }
