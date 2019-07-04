@@ -11,23 +11,23 @@ package com.elearning.Dao;
  * and open the template in the editor.
  */ 
 import com.elearning.entities.Cours;
-import com.elearning.entities.Enseignant;
+import com.elearning.entities.Utilisateur;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
  
-public interface EnseignantDao  extends CrudRepository<Enseignant, Long>  {
+public interface UtilisateurDao  extends CrudRepository<Utilisateur, Long>  {
 
     @Override
-    public void delete(Enseignant t);
+    public void delete(Utilisateur t);
 
     @Override
-    public Iterable<Enseignant> findAll();
+    public Iterable<Utilisateur> findAll();
 
     @Override
-    public Optional<Enseignant> findById(Long id);
+    public Optional<Utilisateur> findById(Long id);
 
     @Override
     public boolean existsById(Long id);
@@ -39,7 +39,7 @@ public interface EnseignantDao  extends CrudRepository<Enseignant, Long>  {
     public void deleteAll();
 
     @Override
-    public void deleteAll(Iterable<? extends Enseignant> itrbl);
+    public void deleteAll(Iterable<? extends Utilisateur> itrbl);
 
     @Override
     public void deleteById(Long id);
@@ -48,8 +48,8 @@ public interface EnseignantDao  extends CrudRepository<Enseignant, Long>  {
     public boolean equals(Object obj);
 
     @Override
-    public Iterable<Enseignant> findAllById(Iterable<Long> itrbl);
+    public Iterable<Utilisateur> findAllById(Iterable<Long> itrbl);
 
-    @Query(value = "SELECT c FROM Enseignant c WHERE c.username = :username AND c.password= :password") // ?1 , ?2 selon l'order dans la fonction 
-    public List<Enseignant> login(@Param("username") String keyword, @Param("password") String keyword2);
+    @Query(value = "SELECT c FROM Utilisateur c WHERE c.username = :username AND c.password= :password") // ?1 , ?2 selon l'order dans la fonction 
+    public List<Utilisateur> login(@Param("username") String keyword, @Param("password") String keyword2);
 }

@@ -1,8 +1,8 @@
 package com.elearning.controleur;
 
 import com.elearning.DaoImp.CoursDaoImp;
-import com.elearning.DaoImp.EnseignantDaoImp;
-import com.elearning.DaoImp.EtudiantDaoImp;
+import com.elearning.DaoImp.UtilisateurDaoImp;
+import com.elearning.DaoImp.UtilisateurDaoImp;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeEtudiant {
 
     @Autowired
-    public EnseignantDaoImp DaoEnseigant;
+    public UtilisateurDaoImp DaoUtilisateur;
     @Autowired
     public CoursDaoImp DaoCours;
     @Autowired
-    public EtudiantDaoImp DaoEtudiant;
+    public UtilisateurDaoImp DaoEtudiant;
 
     @GetMapping
     public String base(HttpServletRequest request) {

@@ -24,21 +24,22 @@
 
                 <div class="form-signin-heading text-center">
                     <h1 class="sign-title">Authentification</h1>
-                    <img src="<c:url value="/resources/images/eLearning.png" />" >
+                    <img src="<c:url value="/resources/images/eLearning.png" />" >       
                 </div>
                 <div class="login-wrap">
                     ${erreur}
-           
                 <div class="form-group">
-                    
-                    <select class="form-control" name="type">
-                        <option>...........</option>
+                    <div class="label">
+                       Type
+                    </div>
+                    <select class="form-control" name="type" required="true">
+                        <option selected="true"></option>
                         <option value="etudiant">Etudiant</option>
                         <option value="ens">Enseignant</option>
                     </select>
                 </div>
-                <input type="text" class="form-control" name="username" placeholder="User ID" autofocus>
-                <input type="password" class="form-control" name="password" placeholder="Password">
+                    <input type="text" class="form-control" name="username" placeholder="User ID" autofocus required="true">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="true">
 
                 <button class="btn btn-lg btn-login btn-block" type="submit">
                     <i class="fa fa-check"></i>
@@ -61,7 +62,7 @@
         </div>
 
         <!-- Modal -->
-        <!--                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -79,7 +80,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>
         <!-- modal -->
 
     </form>

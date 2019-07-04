@@ -1,40 +1,26 @@
 package com.elearning.controleur;
 
 import com.elearning.DaoImp.CoursDaoImp;
-import com.elearning.DaoImp.EnseignantDaoImp;
-import com.elearning.DaoImp.EtudiantDaoImp;
+import com.elearning.DaoImp.UtilisateurDaoImp;
 import com.elearning.entities.Etudiant;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.List;
-import javax.servlet.ServletException;
+import com.elearning.entities.Utilisateur;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 @RequestMapping(value = "/")
 public class Login {
 
     @Autowired
-    public EnseignantDaoImp DaoEnseigant;
+    public UtilisateurDaoImp DaoUtilisateur;
     @Autowired
     public CoursDaoImp DaoCours;
-    @Autowired
-    public EtudiantDaoImp DaoEtudiant;
 
     @GetMapping
     public String m(HttpServletRequest request) {
@@ -64,7 +50,7 @@ public class Login {
             } else {
                 if (type.equals("etudiant")) {
                     try {
-                        Etudiant etud = DaoEtudiant.login(username, password).get(0);
+                        Utilisateur etud = DaoUtilisateur.login(username, password).get(0);
                         
                         return "redirect:/home_etudiant";
                         
