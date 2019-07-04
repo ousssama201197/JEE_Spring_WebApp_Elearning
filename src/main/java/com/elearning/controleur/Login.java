@@ -30,9 +30,7 @@ public class Login {
             System.err.println("erreur");
             return "login";
         }
-
     }
-
     @GetMapping(value = "/mdpoublier/restauration")
     public String mdpoublier(HttpServletRequest request, Model model) {
         try{
