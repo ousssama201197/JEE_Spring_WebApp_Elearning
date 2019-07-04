@@ -1,4 +1,3 @@
-
 package com.elearning.Dao;
 
 /**
@@ -9,7 +8,7 @@ package com.elearning.Dao;
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */ 
+ */
 import com.elearning.entities.Cours;
 import com.elearning.entities.Utilisateur;
 import java.util.List;
@@ -17,8 +16,8 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
- 
-public interface UtilisateurDao  extends CrudRepository<Utilisateur, Long>  {
+
+public interface UtilisateurDao extends CrudRepository<Utilisateur, Long> {
 
     @Override
     public void delete(Utilisateur t);
@@ -52,4 +51,11 @@ public interface UtilisateurDao  extends CrudRepository<Utilisateur, Long>  {
 
     @Query(value = "SELECT c FROM Utilisateur c WHERE c.username = :username AND c.password= :password") // ?1 , ?2 selon l'order dans la fonction 
     public List<Utilisateur> login(@Param("username") String keyword, @Param("password") String keyword2);
+
+    @Query(value = "SELECT c FROM Utilisateur c WHERE c.username = :username") // ?1 , ?2 selon l'order dans la fonction 
+    public Utilisateur ExistsByUsername(@Param("username") String keyword);
+    
+        @Query(value = "SELECT c FROM Utilisateur c WHERE c.email = :email") // ?1 , ?2 selon l'order dans la fonction 
+    public Utilisateur ExistsByEmail(@Param("email") String keyword);
+
 }

@@ -18,7 +18,6 @@
     </head>
 
     <body class="login-body">
-
         <div class="container">
             <form class="form-signin" action="http://localhost:8080/learning2/login" method="GET">
 
@@ -26,20 +25,13 @@
                     <h1 class="sign-title">Authentification</h1>
                     <img src="<c:url value="/resources/images/eLearning.png" />" >       
                 </div>
+                      ${erreur}
+                    ${newinscription}
                 <div class="login-wrap">
-                    ${erreur}
-                <div class="form-group">
-                    <div class="label">
-                       Type
-                    </div>
-                    <select class="form-control" name="type" required="true">
-                        <option selected="true"></option>
-                        <option value="etudiant">Etudiant</option>
-                        <option value="ens">Enseignant</option>
-                    </select>
-                </div>
-                    <input type="text" class="form-control" name="username" placeholder="User ID" autofocus required="true">
-                    <input type="password" class="form-control" name="password" placeholder="Password" required="true">
+              
+        
+                    <input type="text" class="form-control" name="username" placeholder="nom d'utilisateur" autofocus required="true">
+                    <input type="password" class="form-control" name="password" placeholder="mot de passe" required="true">
 
                 <button class="btn btn-lg btn-login btn-block" type="submit">
                     <i class="fa fa-check"></i>
@@ -47,15 +39,14 @@
 
                 <div class="registration">
                     Not a member yet?
-                    <a class="" href="registration.html">
-                        Signup
+                    <a class="" href="<c:url value="/inscription" />">
+                        inscrivez-vous !                      
                     </a>
                 </div>
                 <label class="checkbox">
-                    <input type="checkbox" value="remember-me"> Remember me
+                   
                     <span class="pull-right">
-                        <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
-
+                        <a data-toggle="modal" href="<c:url value="/mdpoublier" />"> mot de passe oublier?</a>
                     </span>
                 </label>
 

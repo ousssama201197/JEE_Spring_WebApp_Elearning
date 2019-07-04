@@ -20,9 +20,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 public class Util {
-
 
     public static String motdepasse() {
         System.out.println((char) 65);
@@ -167,6 +167,14 @@ public class Util {
         return m.find();
     }
 
+    private static String getFilename(Part part) {
+        for (String cd : part.getHeader("content-disposition").split(";")) {
+            if (cd.trim().startsWith("filename")) {
+                return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
     //   ^[a-zA-Z]*$
 }
 

@@ -40,5 +40,11 @@ public class UtilisateurDaoImp {
     public List<Utilisateur> login(String user, String pass) {
         return repo.login(user, pass);
     }
-
+  public Utilisateur ExistsByUsername(String user) {
+        return repo.ExistsByUsername(user);
+    }
+    public Utilisateur ExistsByEmail(String email) {
+        return repo.ExistsByEmail(email);
+    }
+    
 }
