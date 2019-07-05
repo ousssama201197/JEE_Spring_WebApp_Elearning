@@ -34,7 +34,15 @@ public class Cours {
 
     @ManyToOne
     @JoinColumn(name="idenseignant" , referencedColumnName = "id")
-    private Enseignant enseignant ;
+    private Utilisateur enseignant ;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
 
     public Long getIdcours() {
@@ -53,14 +61,16 @@ public class Cours {
         this.name = name;
     }
 
-
-    public Enseignant getEnseignant() {
+    public Utilisateur getEnseignant() {
         return enseignant;
     }
 
-    public void setEnseignant(Enseignant enseignant) {
+    public void setEnseignant(Utilisateur enseignant) {
         this.enseignant = enseignant;
     }
+
+
+
    
     
     

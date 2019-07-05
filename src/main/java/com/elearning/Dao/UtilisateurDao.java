@@ -50,7 +50,7 @@ public interface UtilisateurDao extends CrudRepository<Utilisateur, Long> {
     public Iterable<Utilisateur> findAllById(Iterable<Long> itrbl);
 
     @Query(value = "SELECT c FROM Utilisateur c WHERE c.username = :username AND c.password= :password") // ?1 , ?2 selon l'order dans la fonction 
-    public List<Utilisateur> login(@Param("username") String keyword, @Param("password") String keyword2);
+    public Utilisateur login(@Param("username") String keyword, @Param("password") String keyword2);
 
     @Query(value = "SELECT c FROM Utilisateur c WHERE c.username = :username") // ?1 , ?2 selon l'order dans la fonction 
     public Utilisateur ExistsByUsername(@Param("username") String keyword);

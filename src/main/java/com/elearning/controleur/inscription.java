@@ -14,20 +14,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import outiles.Util;
+import com.elearning.outiles.Util;
 
 /**
  *
  * @author Amina
  */
 @Controller
-@RequestMapping(value = "/inscription")
 public class inscription {
 
     @Autowired
     public UtilisateurDaoImp DaoUtilisateur;
 
-    @GetMapping
+    @RequestMapping(value = "/inscription")
     public String index(HttpServletRequest request, Model model) {
         try {
             String username = request.getSession(true).getAttribute("login").toString();

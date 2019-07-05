@@ -37,7 +37,7 @@ public class UtilisateurDaoImp {
         repo.deleteById(id);
     }
 
-    public List<Utilisateur> login(String user, String pass) {
+    public Utilisateur login(String user, String pass) {
         return repo.login(user, pass);
     }
   public Utilisateur ExistsByUsername(String user) {

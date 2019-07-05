@@ -51,5 +51,7 @@ public interface CoursDao  extends CrudRepository<Cours, Long>  {
 
      @Query(value = "SELECT c FROM Cours c WHERE c.enseignant.id = :idenseignant") // ?1 , ?2 selon l'order dans la fonction 
     public List<Cours> coursByEnseignant(@Param("idenseignant") Long keyword);
+    
+
      
 } 

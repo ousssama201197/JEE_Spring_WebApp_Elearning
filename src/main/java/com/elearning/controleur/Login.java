@@ -3,17 +3,24 @@ package com.elearning.controleur;
 import com.elearning.DaoImp.CoursDaoImp;
 import com.elearning.DaoImp.UtilisateurDaoImp;
 import com.elearning.entities.Utilisateur;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import outiles.Util;
+import com.elearning.outiles.Util;
 
 @Controller
-@RequestMapping(value = "/")
 public class Login {
 
     @Autowired
@@ -21,21 +28,38 @@ public class Login {
     @Autowired
     public CoursDaoImp DaoCours;
 
-    @GetMapping
-    public String m(HttpServletRequest request) {
-        try { 
-            System.err.println(request.getSession(true).getAttribute("login").toString());
-            return "index";
+    @RequestMapping(value = "/")
+    public String index(HttpServletRequest request) {
+        System.err.println("tttt");
+        try {
+            String username = request.getSession(true).getAttribute("login").toString();
+            Utilisateur etud = DaoUtilisateur.ExistsByUsername(username);
+            if (etud != null) {
+                if (etud.getType().equals("etudiant")) {
+                    // infos
+                    return "redirect:/home_etudiant";
+
+                } else if (etud.getType().equals("ens")) {
+                    // infos
+                    return "redirect:/home_enseigant";
+                } else {
+                    return "login";
+                }
+
+            } else {
+                return "login";
+            }
         } catch (NullPointerException e) {
             System.err.println("erreur");
             return "login";
         }
     }
+
     @GetMapping(value = "/mdpoublier/restauration")
     public String mdpoublier(HttpServletRequest request, Model model) {
-        try{
-        String email = request.getParameter("email");
-        Utilisateur user = DaoUtilisateur.ExistsByEmail(email);
+        try {
+            String email = request.getParameter("email");
+            Utilisateur user = DaoUtilisateur.ExistsByEmail(email);
             String msg = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n"
                     + "        \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
                     + "<!-- saved from url=(0014)about:internet -->\n"
@@ -96,7 +120,7 @@ public class Login {
                     + "\n"
                     + "        <div class=\"block\">\n"
                     + "\n"
-                    + "       <img class=\"img\" src=\"http://www.orlecplus.com/images/homologer.png\" />\n"
+                    + "       <img class=\"img\" src=\"\" />\n"
                     + "\n"
                     + "             <h2>Salut " + user.getNom() + "  " + user.getPrenom() + " </h2>\n"
                     + "             <h2>  Veuillez changer votre mot de passe dans la page ci dessous: </h2>\n"
@@ -123,7 +147,7 @@ public class Login {
                     + "\n"
                     + "\n"
                     + "</html>";
-            String subject = "Sonelgaz ,mot de passe oublié";
+            String subject = "E-learning,mot de passe oublié";
             Util.sendMail(msg, subject, email);
 
             model.addAttribute("message", "<div class=\"alert alert-success alert-block fade in\">\n"
@@ -134,17 +158,17 @@ public class Login {
                     + "                                    <i class=\"icon-ok-sign\"></i>\n"
                     + "                                    Success!\n"
                     + "                                </h4>\n"
-                + "<p> verifier votre boite mail un lien de recuperation a été envoyer</p>\n"
+                    + "<p> verifier votre boite mail un lien de recuperation a été envoyer</p>\n"
                     + "                            </div>");
             return "mdpoublier";
 
-        }catch(NullPointerException e){
-               model.addAttribute("message", "<div class=\"row\">"
-                       + "<div style='margin-left : 20%;'> "
-                       + "<span  class=\"alert alert-danger\">votre compte n'existe pas ;( </span>"
-                       + "</div>"
-                       + "</div>"
-                       + "");
+        } catch (NullPointerException e) {
+            model.addAttribute("message", "<div class=\"row\">"
+                    + "<div style='margin-left : 20%;'> "
+                    + "<span  class=\"alert alert-danger\">votre compte n'existe pas ;( </span>"
+                    + "</div>"
+                    + "</div>"
+                    + "");
             return "mdpoublier";
         }
     }
@@ -152,7 +176,7 @@ public class Login {
     @GetMapping(value = "/mdp/restauration")
     public String resetmdp(HttpServletRequest request) {
         request.getParameter("code");
-        
+
         try {
             System.err.println(request.getSession(true).getAttribute("login").toString());
             return "index";
@@ -160,9 +184,9 @@ public class Login {
             System.err.println("erreur");
             return "login";
         }
- 
+
     }
-            
+
     @GetMapping(value = "/mdpoublier")
     public String resetmdp() {
         return "mdpoublier";
@@ -170,42 +194,47 @@ public class Login {
 
     @GetMapping(value = "/login")
     public String auth(HttpServletRequest request, Model model) {
+        if (request.getSession(true).getAttribute("login") != null) {
+            return index(request);
+        }
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String type = request.getParameter("type");
+        //   String type = request.getParameter("type");
         try {
             request.getSession(true).setAttribute("login", username);
 
             if (username.equals("") || password.equals("")) {
-
                 return "login";
-            } else {
-                if (type.equals("etudiant")) {
-                    try {
-                        Utilisateur etud = DaoUtilisateur.login(username, password).get(0);
 
+            } else {
+                Utilisateur etud = DaoUtilisateur.login(username, Util.sha256(password));
+                if (etud != null) {
+
+                    if (etud.getType().equals("etudiant")) {
+
+                        // infos
                         return "redirect:/home_etudiant";
 
-                    } catch (IndexOutOfBoundsException e) {
-
-                        System.err.println("erreur null");
-                        model.addAttribute("erreur", "<span  class=\"alert alert-danger\">  erreur </span>");
-
-                        return "login";
+                    } else if (etud.getType().equals("ens")) {
+                        // infos
+                        return "redirect:/home_enseigant";
                     }
 
-                } else if (type.equals("ens")) {
-                    return "redirect:/home_enseigant";
                 }
-                return "login";
+
             }
 
         } catch (NullPointerException e) {
-            System.err.println("erreur");
+            model.addAttribute("erreur", "<span  class=\"alert alert-danger\""
+                    + " style=\"margin-left : 20px;\">"
+                    + "  nom d'utilisateur où mot de passse incorrect </span>");
             return "login";
         }
-
+        model.addAttribute("erreur", "<span  class=\"alert alert-danger\""
+                + " style=\"margin-left : 20px;margin-right : 20px;\">"
+                + "  erreur </span>");
+        return "login";
     }
 
 //    @PostMapping(value = "/jsp/index")
@@ -221,4 +250,16 @@ public class Login {
 //        inputfile.close();
 //        return "index";
 //    }
+    @RequestMapping(value = "/filedown")
+    public String filedown(HttpServletResponse response) {
+        try {
+            Path a = Paths.get("C:\\Users\\Amina\\Desktop\\06741571241403192.pdf");
+      
+            InputStream in = Files.newInputStream(a);
+            IOUtils.copy(in, response.getOutputStream());
+            return "login";
+        } catch (IOException ex) {
+            return "login";
+        }
+    }
 }

@@ -7,6 +7,7 @@ package com.elearning.DaoImp;
 
 
 import com.elearning.Dao.EtudiantCoursDao;
+import com.elearning.entities.Cours;
 import com.elearning.entities.EtudiantCours;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,9 @@ public class EtudiantCoursDaoImp{
         repo.deleteById(id);
     }
     
-   
+       public List<EtudiantCours> CoursByEtudiant(String username){
+           return  repo.coursByEtudiant(username);
+    }
      
 }
 

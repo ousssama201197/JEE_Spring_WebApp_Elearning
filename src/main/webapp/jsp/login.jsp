@@ -25,10 +25,12 @@
                     <h1 class="sign-title">Authentification</h1>
                     <img src="<c:url value="/resources/images/eLearning.png" />" >       
                 </div>
+                <div class="row">
                       ${erreur}
+                </div>
                     ${newinscription}
                 <div class="login-wrap">
-              
+    
         
                     <input type="text" class="form-control" name="username" placeholder="nom d'utilisateur" autofocus required="true">
                     <input type="password" class="form-control" name="password" placeholder="mot de passe" required="true">

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package outiles;
+package com.elearning.outiles;
 
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -55,7 +55,7 @@ public class Util {
 
     public static void sendMail(String msg, String objet, String destination) {
         final String username = "sd.sonelgaz@gmail.com";
-        final String password = "123456789aze";
+        final String password = "123456789admin";
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true"); //securité TLS pour les comptes gmail
@@ -78,7 +78,7 @@ public class Util {
             Transport.send(message);
             System.out.println("Done");
         } catch (MessagingException e) {
-
+  e.printStackTrace();
         }
     }
 
