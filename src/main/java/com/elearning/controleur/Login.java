@@ -41,13 +41,17 @@ public class Login {
             if (etud != null) {
                 if (etud.getType().equals("etudiant")) {
                     // infos
+                    model.addObject("listCours", DaoEtudiantCours.CoursByEtudiant(username));
+                    model.addObject("username", etud.getNom() + "  " + etud.getPrenom());
                     model.setViewName("home_etudiant");
                     return model;
 
                 } else if (etud.getType().equals("ens")) {
                     // infos
-
+                    model.addObject("listecours", DaoEtudiantCours.Coursinvalide(false,username));
                     model.setViewName("home_enseigant");
+                    model.addObject("username", etud.getNom() + "  " + etud.getPrenom());
+
                     return model;
 
                 } else {

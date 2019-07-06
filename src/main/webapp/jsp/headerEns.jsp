@@ -15,10 +15,8 @@
         <link rel="shortcut icon" href="#" type="image/png">
 
         <title>Enseigant</title> 
+        <jsp:include page="CssImports.jsp" />
 
-
-        <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet" />
-        <link href="<c:url value="/resources/css/style-responsive.css" />" rel="stylesheet" />
 
 
     </head>
@@ -64,7 +62,7 @@
 
                     <!--sidebar nav start-->
                     <ul class="nav nav-pills nav-stacked custom-nav">
-                        <li class="menu-list"><a href="index.html"><i class="fa fa-home"></i> <span>Home</span></a></li>
+                        <li class="menu-list"><a href="<c:url value="/" />"><i class="fa fa-home"></i> <span>Home</span></a></li>
                         <li class="menu-list"><a href="<c:url value="/nouveau_cours" />"><i class="fa fa-file"></i> <span>Nouveau Cours</span></a>
                         <li class="menu-list"><a href="<c:url value="/nouveau_document" />"><i class="fa fa-file-text"></i> <span>Nouveau Document</span></a></li>
                         <li class="menu-list"><a href="<c:url value="/nouveau_examen" />"><i class="fa fa-pencil"></i> <span>Nouveau Examen</span></a></li>

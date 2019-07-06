@@ -59,8 +59,9 @@
 
                     <!--sidebar nav start-->
                     <ul class="nav nav-pills nav-stacked custom-nav">
-                        <li class="menu-list"><a href="index.html"><i class="fa fa-home"></i> <span>Home</span></a></li>
-                        <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>Cours</span></a>
+                        <li class="menu-list"><a href="<c:url value="/" />"><i class="fa fa-home"></i> <span>Home</span></a></li>
+                        <li class="menu-list"><a href="<c:url value="/sinscrireCours" />"><i class="fa fa-laptop"></i> <span>S'inscrire dans un Cours</span></a>
+
 
                            
                         </li>
@@ -106,7 +107,7 @@
                             <li>
                                 <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                     <img src="images/photos/user-avatar.png" alt="" />
-                                    John Doe
+                                    ${username}
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-usermenu pull-right">

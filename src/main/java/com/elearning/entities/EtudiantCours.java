@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 @Entity
-public class EtudiantCours implements Serializable {
+public class EtudiantCours {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,8 @@ public class EtudiantCours implements Serializable {
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date Date_inscription;
+    
+    
     private Boolean valider;
 
     public Long getId() {
@@ -68,5 +70,7 @@ public class EtudiantCours implements Serializable {
     public void setValider(Boolean valider) {
         this.valider = valider;
     }
+
+
 
 }

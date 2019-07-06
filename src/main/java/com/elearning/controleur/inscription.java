@@ -94,6 +94,7 @@ public class inscription {
                     etudiant.setNom(nom);
                     etudiant.setPrenom(prenom);
                     etudiant.setUsername(username);
+                    etudiant.setType("etudiant");
 
                     DaoUtilisateur.save(etudiant);
                     model.addObject("newinscription", "<div class=\"alert alert-success\"\n"
