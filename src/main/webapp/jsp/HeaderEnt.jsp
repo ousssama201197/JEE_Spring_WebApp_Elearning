@@ -14,12 +14,9 @@
         <meta name="author" content="ThemeBucket">
         <link rel="shortcut icon" href="#" type="image/png">
 
-        <title>Enseigant</title> 
+        <title>Home</title> 
 
-
-        <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet" />
-        <link href="<c:url value="/resources/css/style-responsive.css" />" rel="stylesheet" />
-
+        <jsp:include page="CssImports.jsp" />
 
     </head>
 
@@ -29,7 +26,6 @@
             <!-- left side start-->
             <div class="left-side sticky-left-side">
 
-                <!--logo and iconic logo start-->
                 <div class="logo" style="float: right;">
                     <a href="<c:url value="/" />" ><img src="<c:url value="/resources/images/eLearning70X70.png" />" alt=""></a>
                     <span style="color : white;">Elearning</span>
@@ -40,7 +36,7 @@
                 </div>
 
                 </br>
-                <!--logo and iconic logo end-->
+             <!--logo and iconic logo end-->
 
                 <div class="left-side-inner">
 
@@ -56,18 +52,18 @@
 
                         <h5 class="left-nav-title">Account Information</h5>
                         <ul class="nav nav-pills nav-stacked custom-nav">
-                            <li><a href="#"><i class="fa fa-bell-o"></i> <span>Profile</span></a></li>
-                            <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                        
+                            <li><a href="<c:url value="/logout" />"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
                         </ul>
                     </div>
 
                     <!--sidebar nav start-->
                     <ul class="nav nav-pills nav-stacked custom-nav">
                         <li class="menu-list"><a href="index.html"><i class="fa fa-home"></i> <span>Home</span></a></li>
-                        <li class="menu-list"><a href="<c:url value="/nouveau_cours" />"><i class="fa fa-file"></i> <span>Nouveau Cours</span></a>
-                        <li class="menu-list"><a href="<c:url value="/nouveau_document" />"><i class="fa fa-file-text"></i> <span>Nouveau Document</span></a></li>
-                        <li class="menu-list"><a href="<c:url value="/nouveau_examen" />"><i class="fa fa-pencil"></i> <span>Nouveau Examen</span></a></li>
+                        <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>Cours</span></a>
+
+                           
+                        </li>
                     </ul>
                     <!--sidebar nav end-->
 
@@ -81,10 +77,13 @@
                 <!-- header section start-->
                 <div class="header-section">
 
+                   
+                    <!--search end-->
+
                     <!--notification menu start -->
                     <div class="menu-right">
                         <ul class="notification-menu">
-
+                           
                             <li>
                                 <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
@@ -93,8 +92,6 @@
                                 <div class="dropdown-menu dropdown-menu-head pull-right">
                                     <h5 class="title">Notifications</h5>
                                     <ul class="dropdown-list normal-list">
-
-
                                         <li class="new">
                                             <a href="">
                                                 <span class="label label-danger"><i class="fa fa-bolt"></i></span>
@@ -102,19 +99,18 @@
                                                 <em class="small">34 mins</em>
                                             </a>
                                         </li>
-
-
+                                     
                                     </ul>
                                 </div>
                             </li>
                             <li>
                                 <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                     <img src="images/photos/user-avatar.png" alt="" />
-                                    ${username}
+                                    John Doe
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-
+                               
                                     <li><a href="<c:url value="/logout" />"><i class="fa fa-sign-out"></i> Log Out</a></li>
                                 </ul>
                             </li>

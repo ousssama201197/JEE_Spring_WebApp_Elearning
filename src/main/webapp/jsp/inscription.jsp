@@ -20,7 +20,7 @@
     <body class="login-body">
 
         <div class="container">
-            <form class="form-signin" action="<c:url value="/inscription/nouveau" />" method="GET">
+            <form class="form-signin" action="<c:url value="/saveuser" />" method="GET">
                 <div class="form-signin-heading text-center">
                     <h1 class="sign-title">Inscription</h1>
                     <img src="<c:url value="/resources/images/eLearning.png" />" >       

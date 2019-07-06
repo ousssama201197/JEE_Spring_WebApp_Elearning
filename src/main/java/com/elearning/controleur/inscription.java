@@ -42,15 +42,14 @@ public class inscription {
         } catch (NullPointerException e) {
             System.err.println("erreur");
             return "inscription";
-        }
+        } 
 
     }
 
-    @GetMapping(value = "/nouveau")
+   @RequestMapping(value = "/saveuser")
     public ModelAndView nouveau(HttpServletRequest request) {
-        ModelAndView model= new ModelAndView();
-        
-        
+        ModelAndView model = new ModelAndView();
+
         try {
 
             String username = request.getSession(true).getAttribute("login").toString();
@@ -59,19 +58,19 @@ public class inscription {
             if (user != null) {
                 if (user.getType().equals("Etudiant")) {
                     model.setViewName("home_etudiant");
-                   return model;
+                    return model;
                 } else if (user.getType().equals("Enseignant")) {
-                     model.setViewName("home_enseignant");
-                      return model;
+                    model.setViewName("home_enseignant");
+                    return model;
                 }
             } else {
 
-                            model.setViewName("login");
-                      return model;
+                model.setViewName("login");
+                return model;
             }
-            
-                            model.setViewName("login");
-                      return model;
+
+            model.setViewName("login");
+            return model;
         } catch (NullPointerException e) {
             System.err.println("erreurinssession");
 
@@ -106,26 +105,24 @@ public class inscription {
                             + "                               \n"
                             + "                            </div>");
 
+                    model.setViewName("login");
+                    return model;
                     
-                            model.setViewName("login");
-                      return model;
-
                 } else {
-                model.addObject("erreur", "<div class=\"row\">"
-                       + "<div style='margin-left : 20%;'> "
-                        + "<span  class=\"alert alert-danger\">nom d'utilisateur existe déja ;( </span>"
-                        + "</div>"
-                        + "</div>");
-   
-                        
-                      model.setViewName("inscription");
-                      return model;
+                    model.addObject("erreur", "<div class=\"row\">"
+                            + "<div style='margin-left : 20%;'> "
+                            + "<span  class=\"alert alert-danger\">nom d'utilisateur existe déja ;( </span>"
+                            + "</div>"
+                            + "</div>");
+
+                    model.setViewName("inscription");
+                    return model;
                 }
             } else {
                 model.addObject("erreur", "<span  class=\"alert alert-danger\">vérifier mot de passe</span>");
                 model.addObject("erreur2", "has-error");
-                       model.setViewName("inscription");
-                      return model;
+                model.setViewName("inscription");
+                return model;
 
             }
 

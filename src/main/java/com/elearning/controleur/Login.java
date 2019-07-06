@@ -1,6 +1,7 @@
 package com.elearning.controleur;
 
 import com.elearning.DaoImp.CoursDaoImp;
+import com.elearning.DaoImp.EtudiantCoursDaoImp;
 import com.elearning.DaoImp.UtilisateurDaoImp;
 import com.elearning.entities.Utilisateur;
 import java.io.File;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.elearning.outiles.Util;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class Login {
@@ -27,31 +29,40 @@ public class Login {
     public UtilisateurDaoImp DaoUtilisateur;
     @Autowired
     public CoursDaoImp DaoCours;
+    @Autowired
+    public EtudiantCoursDaoImp DaoEtudiantCours;
 
     @RequestMapping(value = "/")
-    public String index(HttpServletRequest request) {
-        System.err.println("tttt");
+    public ModelAndView index(HttpServletRequest request) {
+        ModelAndView model = new ModelAndView();
         try {
             String username = request.getSession(true).getAttribute("login").toString();
             Utilisateur etud = DaoUtilisateur.ExistsByUsername(username);
             if (etud != null) {
                 if (etud.getType().equals("etudiant")) {
                     // infos
-                    return "redirect:/home_etudiant";
+                    model.setViewName("home_etudiant");
+                    return model;
 
                 } else if (etud.getType().equals("ens")) {
                     // infos
-                    return "redirect:/home_enseigant";
+
+                    model.setViewName("home_enseigant");
+                    return model;
+
                 } else {
-                    return "login";
+                    model.setViewName("login");
+                    return model;
                 }
 
             } else {
-                return "login";
+                model.setViewName("login");
+                return model;
             }
         } catch (NullPointerException e) {
             System.err.println("erreur");
-            return "login";
+            model.setViewName("login");
+            return model;
         }
     }
 
@@ -193,7 +204,8 @@ public class Login {
     }
 
     @GetMapping(value = "/login")
-    public String auth(HttpServletRequest request, Model model) {
+    public ModelAndView auth(HttpServletRequest request) {
+        ModelAndView model = new ModelAndView();
         if (request.getSession(true).getAttribute("login") != null) {
             return index(request);
         }
@@ -205,7 +217,8 @@ public class Login {
             request.getSession(true).setAttribute("login", username);
 
             if (username.equals("") || password.equals("")) {
-                return "login";
+                model.setViewName("login");
+                return model;
 
             } else {
                 Utilisateur etud = DaoUtilisateur.login(username, Util.sha256(password));
@@ -214,11 +227,15 @@ public class Login {
                     if (etud.getType().equals("etudiant")) {
 
                         // infos
-                        return "redirect:/home_etudiant";
+                        model.setViewName("home_etudiant");
+                        return model;
 
                     } else if (etud.getType().equals("ens")) {
                         // infos
-                        return "redirect:/home_enseigant";
+
+                        model.setViewName("home_enseigant");
+                        model.addObject("listeEtudiantCours", DaoEtudiantCours.CoursByEnseignant(etud.getUsername()));
+                        return model;
                     }
 
                 }
@@ -226,15 +243,17 @@ public class Login {
             }
 
         } catch (NullPointerException e) {
-            model.addAttribute("erreur", "<span  class=\"alert alert-danger\""
+            model.setViewName("login");
+            model.addObject("erreur", "<span  class=\"alert alert-danger\""
                     + " style=\"margin-left : 20px;\">"
                     + "  nom d'utilisateur où mot de passse incorrect </span>");
-            return "login";
+            return model;
         }
-        model.addAttribute("erreur", "<span  class=\"alert alert-danger\""
+        model.setViewName("login");
+        model.addObject("erreur", "<span  class=\"alert alert-danger\""
                 + " style=\"margin-left : 20px;margin-right : 20px;\">"
                 + "  erreur </span>");
-        return "login";
+        return model;
     }
 
 //    @PostMapping(value = "/jsp/index")
@@ -254,12 +273,18 @@ public class Login {
     public String filedown(HttpServletResponse response) {
         try {
             Path a = Paths.get("C:\\Users\\Amina\\Desktop\\06741571241403192.pdf");
-      
+
             InputStream in = Files.newInputStream(a);
             IOUtils.copy(in, response.getOutputStream());
             return "login";
         } catch (IOException ex) {
             return "login";
         }
+    }
+
+    @RequestMapping(value = "/logout")
+    public String filedown(HttpServletRequest request) {
+        request.getSession(true).removeAttribute("login");
+        return "login";
     }
 }

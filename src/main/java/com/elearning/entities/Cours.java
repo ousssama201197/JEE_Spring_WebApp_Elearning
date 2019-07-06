@@ -32,9 +32,21 @@ public class Cours {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "discription")
+    private String discription;
     @ManyToOne
     @JoinColumn(name="idenseignant" , referencedColumnName = "id")
     private Utilisateur enseignant ;
+
+    public String getDiscription() {
+        return discription;
+    }
+
+    public void setDiscription(String discription) {
+        this.discription = discription;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -44,14 +56,6 @@ public class Cours {
         this.id = id;
     }
     
-
-    public Long getIdcours() {
-        return id;
-    }
-
-    public void setIdcours(Long idcours) {
-        this.id = idcours;
-    }
 
     public String getName() {
         return name;

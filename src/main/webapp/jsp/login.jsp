@@ -26,58 +26,60 @@
                     <img src="<c:url value="/resources/images/eLearning.png" />" >       
                 </div>
                 <div class="row">
-                      ${erreur}
+                    ${erreur}
                 </div>
-                    ${newinscription}
+                ${newinscription}
                 <div class="login-wrap">
-    
-        
+
+
+
                     <input type="text" class="form-control" name="username" placeholder="nom d'utilisateur" autofocus required="true">
+
                     <input type="password" class="form-control" name="password" placeholder="mot de passe" required="true">
 
-                <button class="btn btn-lg btn-login btn-block" type="submit">
-                    <i class="fa fa-check"></i>
-                </button>
+                    <button class="btn btn-lg btn-login btn-block" type="submit">
+                        <i class="fa fa-check"></i>
+                    </button> 
 
-                <div class="registration">
-                    Not a member yet?
-                    <a class="" href="<c:url value="/inscription" />">
-                        inscrivez-vous !                      
-                    </a>
+                    <div class="registration">
+                        vous n'avez pas un compte?
+                        <a class="" href="<c:url value="/inscription" />">
+                            inscrivez-vous !        
+                        </a>
+                    </div>
+                    <label class="checkbox">
+
+                        <span class="pull-right">
+                            <a data-toggle="modal" href="<c:url value="/mdpoublier" />"> mot de passe oublier?</a>
+                        </span>
+                    </label>
+
                 </div>
-                <label class="checkbox">
-                   
-                    <span class="pull-right">
-                        <a data-toggle="modal" href="<c:url value="/mdpoublier" />"> mot de passe oublier?</a>
-                    </span>
-                </label>
 
-        </div>
+                <!-- Modal -->
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Forgot Password ?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Enter your e-mail address below to reset your password.</p>
+                                <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
 
-        <!-- Modal -->
-                        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Forgot Password ?</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Enter your e-mail address below to reset your password.</p>
-                                        <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-        
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                                        <button class="btn btn-primary" type="button">Submit</button>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                                <button class="btn btn-primary" type="button">Submit</button>
                             </div>
                         </div>
-        <!-- modal -->
+                    </div>
+                </div>
+                <!-- modal -->
 
-    </form>
+            </form>
 
-</div>
-</body>
+        </div>
+    </body>
 </html>

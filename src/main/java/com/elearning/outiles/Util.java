@@ -26,7 +26,6 @@ public class Util {
 
     public static String motdepasse() {
         System.out.println((char) 65);
-
         String s = "";
         for (int i = 0; i <= 7; i++) {
             s = s + (char) (33 + (Math.random() * (125 - 33)));
@@ -78,7 +77,7 @@ public class Util {
             Transport.send(message);
             System.out.println("Done");
         } catch (MessagingException e) {
-  e.printStackTrace();
+            e.printStackTrace();
         }
     }
 

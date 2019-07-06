@@ -53,6 +53,12 @@ public interface EtudiantCoursDao  extends CrudRepository<EtudiantCours, Long>  
          @Query(value = "SELECT c FROM EtudiantCours c WHERE c.etudiant.username = :username") // ?1 , ?2 selon l'order dans la fonction 
     public List<EtudiantCours> coursByEtudiant(@Param("username") String keyword);
     
+             @Query(value = "SELECT c FROM EtudiantCours c WHERE c.cours.enseignant.username = :username") // ?1 , ?2 selon l'order dans la fonction 
+    public List<EtudiantCours> coursByEnseignant(@Param("username") String keyword);
+        
+    @Query(value = "SELECT c FROM EtudiantCours c WHERE c.valider = :boolean AND c.cours.enseignant.username = :username ") // ?1 , ?2 selon l'order dans la fonction 
+    public List<EtudiantCours> coursInvalide(@Param("boolean") Boolean keyword,@Param("username") String username);
     
+     
      
 } 

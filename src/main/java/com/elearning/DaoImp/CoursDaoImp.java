@@ -39,6 +39,9 @@ public class CoursDaoImp{
     
     public List<Cours> CoursByEnseignant(Long id){
    return  repo.coursByEnseignant(id);
+    }    
+    public Cours CoursByName(String name){
+   return  repo.coursByName(name);
     }
      
 }
