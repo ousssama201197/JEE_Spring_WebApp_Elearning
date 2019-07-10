@@ -76,10 +76,9 @@ public class HomeEnseigant {
 
                 } else if (etud.getType().equals("ens")) {
                     // infos
-
                     EtudiantCours coursetudiant = DaoEtudiantCours.get(new Long(request.getParameter("id")));
                     Utilisateur etudiant = DaoUtilisateur.get(new Long(request.getParameter("id2")));
-                   
+                 
                     coursetudiant.setValider(true);
                     DaoEtudiantCours.save(coursetudiant);
                     String msg = "votre inscription au Cours  : " + coursetudiant.getCours().getName() + "\n"

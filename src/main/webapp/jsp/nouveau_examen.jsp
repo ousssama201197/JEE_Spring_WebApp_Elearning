@@ -15,7 +15,7 @@
                     </span>
                 </header>
                 <div class="panel-body">
-                    <form action="<c:url value="/saveexam"/>" method="GET" >
+                    <form action="<c:url value="saveexam"/>" method="GET" >
                     <div class="form-group"> 
                         <label>&nbsp; Liste  des cours  :</label>
                         <select name="idcours" class="form-control">
@@ -42,7 +42,17 @@
                         <label>Choix 3 :</label>
                         <input type="text"  name='c3' required="true" class="form-control">
                     </div>
-                    
+                                             </br>
+                     <div class="form-group"> 
+                        <label> Reponse :</label>
+                        <input type="number"  name='reponse' min="1" max="3" required="true" class="form-control">
+                    </div>  
+                                             
+                     <div class="form-group"> 
+                        <label> Date fin :</label>
+                    <input name="date" class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" value="">
+                    </div>  
+                                             
                     <input type="submit" value="valider" class="btn btn-block btn-primary">
                     </form>
                 </div>

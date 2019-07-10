@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.elearning.DaoImp;
 
 
@@ -34,7 +30,9 @@ public class DocumentDaoImp{
     public void delete(Long id) {
         repo.deleteById(id);
     }
-    
+      public List<Document> CoursByName(Long id){
+   return  repo.DocumentBycours(id);
+    }
    
      
 }

@@ -43,12 +43,13 @@ public class Login {
                     // infos
                     model.addObject("listCours", DaoEtudiantCours.CoursByEtudiant(username));
                     model.addObject("username", etud.getNom() + "  " + etud.getPrenom());
+
                     model.setViewName("home_etudiant");
                     return model;
 
                 } else if (etud.getType().equals("ens")) {
                     // infos
-                    model.addObject("listecours", DaoEtudiantCours.Coursinvalide(false,username));
+                    model.addObject("listecours", DaoEtudiantCours.Coursinvalide(false, username));
                     model.setViewName("home_enseigant");
                     model.addObject("username", etud.getNom() + "  " + etud.getPrenom());
 
@@ -73,7 +74,9 @@ public class Login {
     @GetMapping(value = "/mdpoublier/restauration")
     public String mdpoublier(HttpServletRequest request, Model model) {
         try {
+            
             String email = request.getParameter("email");
+            System.err.println("rachid" + email);
             Utilisateur user = DaoUtilisateur.ExistsByEmail(email);
             String msg = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n"
                     + "        \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
@@ -191,7 +194,6 @@ public class Login {
     @GetMapping(value = "/mdp/restauration")
     public String resetmdp(HttpServletRequest request) {
         request.getParameter("code");
-
         try {
             System.err.println(request.getSession(true).getAttribute("login").toString());
             return "index";
@@ -231,6 +233,8 @@ public class Login {
                     if (etud.getType().equals("etudiant")) {
 
                         // infos
+                        model.addObject("listCours", DaoEtudiantCours.CoursByEtudiant(username));
+                        model.addObject("username", etud.getNom() + "  " + etud.getPrenom());
                         model.setViewName("home_etudiant");
                         return model;
 
@@ -238,8 +242,8 @@ public class Login {
                         // infos
 
                         model.setViewName("home_enseigant");
-                          model.addObject("listecours", DaoEtudiantCours.Coursinvalide(false,username));
-                    model.setViewName("home_enseigant");
+                        model.addObject("listecours", DaoEtudiantCours.Coursinvalide(false, username));
+                        model.setViewName("home_enseigant");
                         model.addObject("listeEtudiantCours", DaoEtudiantCours.CoursByEnseignant(etud.getUsername()));
                         return model;
                     }
@@ -275,19 +279,7 @@ public class Login {
 //        inputfile.close();
 //        return "index";
 //    }
-    @RequestMapping(value = "/filedown")
-    public String filedown(HttpServletResponse response) {
-        try {
-            Path a = Paths.get("C:\\Users\\Amina\\Desktop\\06741571241403192.pdf");
-
-            InputStream in = Files.newInputStream(a);
-            IOUtils.copy(in, response.getOutputStream());
-            return "login";
-        } catch (IOException ex) {
-            return "login";
-        }
-    }
-
+   
     @RequestMapping(value = "/logout")
     public String filedown(HttpServletRequest request) {
         request.getSession(true).removeAttribute("login");

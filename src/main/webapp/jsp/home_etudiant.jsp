@@ -46,7 +46,8 @@
                                     <td>${cours.id}</td>
                                     <td>${cours.cours.name}</td>
                                     <td>${cours.cours.enseignant.nom} ${cours.cours.enseignant.prenom}</td>
-                                    <td>                                        
+                                    <td>       
+                                         <a href="<c:url value="/affichage?id=${cours.cours.id}" />" ><button  class="btn">Acceder</button></a>
                                         <a href="/delete" ><button  class="btn">Quitter</button></a>
                                     </td>
                                 </tr>

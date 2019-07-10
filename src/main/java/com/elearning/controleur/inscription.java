@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.elearning.outiles.Util;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -42,11 +43,11 @@ public class inscription {
         } catch (NullPointerException e) {
             System.err.println("erreur");
             return "inscription";
-        } 
+        }
 
     }
 
-   @RequestMapping(value = "/saveuser")
+    @PostMapping(value = "/saveuser")
     public ModelAndView nouveau(HttpServletRequest request) {
         ModelAndView model = new ModelAndView();
 
@@ -81,7 +82,8 @@ public class inscription {
             String password = request.getParameter("password");
             String cpassword = request.getParameter("cpassword");
             String adresse = request.getParameter("adresse");
-            String matricule = request.getParameter("mat");
+            String type = request.getParameter("type");
+
             if (password.equals(cpassword)) {
 
                 if (DaoUtilisateur.ExistsByUsername(username) == null) {
@@ -90,11 +92,21 @@ public class inscription {
                     etudiant.setAdress(adresse);
                     etudiant.setEmail(email);
                     etudiant.setPassword(Util.sha256(password));
-                    etudiant.setMatricule(matricule);
                     etudiant.setNom(nom);
                     etudiant.setPrenom(prenom);
                     etudiant.setUsername(username);
-                    etudiant.setType("etudiant");
+
+                    if (type.equals("ens")) {
+                        etudiant.setType("ens");
+                        //String grade = request.getParameter("grade");
+                     //   etudiant.setGrade(grade);
+                    }
+                    if (type.equals("etudiant")) {
+                        etudiant.setType("etudiant");
+                        //String matricule = request.getParameter("mat");
+                   //     etudiant.setMatricule(matricule);
+
+                    }
 
                     DaoUtilisateur.save(etudiant);
                     model.addObject("newinscription", "<div class=\"alert alert-success\"\n"
@@ -108,7 +120,7 @@ public class inscription {
 
                     model.setViewName("login");
                     return model;
-                    
+
                 } else {
                     model.addObject("erreur", "<div class=\"row\">"
                             + "<div style='margin-left : 20%;'> "

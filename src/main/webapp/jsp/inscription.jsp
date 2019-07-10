@@ -20,14 +20,26 @@
     <body class="login-body">
 
         <div class="container">
-            <form class="form-signin" action="<c:url value="/saveuser" />" method="GET">
+            <form class="form-signin" action="<c:url value="/saveuser" />" method="POST">
+
+
                 <div class="form-signin-heading text-center">
                     <h1 class="sign-title">Inscription</h1>
                     <img src="<c:url value="/resources/images/eLearning.png" />" >       
                 </div>
-                  ${erreur}
+                ${erreur}
                 <div class="login-wrap">
-                  
+                    <div class="form-group"> 
+                        <label>Etudiant  :</label>
+                        <input type="radio" name="type" value="etudiant" >
+                    </div>
+
+                    <div class="form-group"> 
+                        <label>Enseignant  :</label>
+                        <input type="radio" name="type" value="ens" >
+                    </div>
+
+
                     <div class="form-group"> 
                         <label>&nbsp;nom d'utilisateur  :</label>
                         <input type="text" class="form-control" name="username" placeholder="nom d'utilisateur " autofocus required="true">
@@ -56,16 +68,12 @@
                         <label>&nbsp;Adresse :</label>
                         <input type="text" class="form-control" name="adresse" placeholder="Adresse" required="true">
                     </div>
-                    <div class="form-group"> 
-                        <label >&nbsp;matricule :</label>
-                        <input type="text" id="1" class="form-control" name="mat" placeholder="matricule" required="true">
-                    </div>
+
+                        
 
 
+                    <input class="btn btn-block btn-primary" type="submit" value="valider">
 
-                    <button class="btn btn-lg btn-login btn-block" type="submit">
-                        <i class="fa fa-check"></i>
-                    </button>
 
                     <div class="registration">
                         vous avez déja un compte ?
@@ -82,5 +90,7 @@
             </form>
 
         </div>
+        </script>
+
     </body>
 </html>

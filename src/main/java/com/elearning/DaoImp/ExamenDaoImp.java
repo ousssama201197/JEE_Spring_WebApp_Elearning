@@ -7,6 +7,7 @@ package com.elearning.DaoImp;
 
 
 import com.elearning.Dao.ExamenDao;
+import com.elearning.entities.Cours;
 import com.elearning.entities.Examen;
 import java.util.List;
  
@@ -36,6 +37,10 @@ public class ExamenDaoImp{
     public void delete(Long id) {
         repo.deleteById(id);
     }
+     public List<Examen> ExamenBycours(Long id){
+   return  repo.ExamenBycours(id);
+    }
+     
      
 }
 

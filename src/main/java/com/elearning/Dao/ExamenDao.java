@@ -10,6 +10,7 @@ package com.elearning.Dao;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.elearning.entities.Cours;
 import com.elearning.entities.Examen;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,10 @@ public interface ExamenDao  extends CrudRepository<Examen, Long>  {
 
     @Override
     public Iterable<Examen> findAllById(Iterable<Long> itrbl); 
+    
+    @Query(value = "SELECT c FROM Examen c WHERE c.cours.id = :id") // ?1 , ?2 selon l'order dans la fonction 
+    public List<Examen> ExamenBycours(@Param("id") Long keyword);
+    
     
      
 } 

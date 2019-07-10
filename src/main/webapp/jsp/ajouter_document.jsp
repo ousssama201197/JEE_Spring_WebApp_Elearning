@@ -12,10 +12,10 @@
                     <span class="tools pull-right">
                         <a href="javascript:;" class="fa fa-chevron-down"></a>
                         <a href="javascript:;" class="fa fa-times"></a>
-                    </span>
+                    </span> 
                 </header>
                 <div class="panel-body">
-                    <form action="<c:url value="/savedoc"/>" method="GET" >
+                    <form action="<c:url value="/savedoc"/>" method="POST" enctype="multipart/form-data">
                         <div class="form-group"> 
                             <label>&nbsp; Liste  des cours  :</label>
                             <select name="idcours" class="form-control">
@@ -25,7 +25,10 @@
 
                             </select>
                         </div>
-
+                        <div class="form-group"> 
+                            <label>&nbsp; Nom  :</label>     
+                        <input type="text" name="name" required="true" class="form-control">
+                        </div>>
                         <div class="form-group"> 
                             <label>&nbsp;Description : </label>
                             <textarea type="text" class="form-control" name="des" placeholder="Description"   required="true"></textarea>

@@ -10,6 +10,8 @@ package com.elearning.Dao;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.elearning.entities.Cours;
+import com.elearning.entities.Document;
 import com.elearning.entities.Quiz;
 import java.util.List;
 import java.util.Optional;
@@ -49,11 +51,7 @@ public interface QuizDao  extends CrudRepository<Quiz, Long>  {
     @Override
     public Iterable<Quiz> findAllById(Iterable<Long> itrbl); 
 
-    @Query(value = "SELECT c FROM Quiz c WHERE c.enseignant.id = :idenseignant") // ?1 , ?2 selon l'order dans la fonction 
-    public List<Quiz> coursByEnseignant(@Param("idenseignant") Long keyword);
-    
-  @Query(value = "SELECT c FROM Quiz c WHERE c.name = :name") // ?1 , ?2 selon l'order dans la fonction 
-    public Quiz coursByName(@Param("name") String keyword);
-    
-     
+  @Query(value = "SELECT c FROM Quiz c WHERE c.examen.id = :id") // ?1 , ?2 selon l'order dans la fonction 
+  public Quiz  QuizByexamen(@Param("id") Long keyword);
+  
 } 

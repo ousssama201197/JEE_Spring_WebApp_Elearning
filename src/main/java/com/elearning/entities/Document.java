@@ -5,15 +5,13 @@
  */
 package com.elearning.entities;
 
-import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
 
 /**
  *
@@ -29,9 +27,21 @@ public class Document {
     @ManyToOne
     @JoinColumn(name = "ideCours", referencedColumnName = "id")
     private Cours cours;
+    
+    
+    private String name ;
     private String url;
     private String type;
     private String description;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     public Long getId() {
         return id;

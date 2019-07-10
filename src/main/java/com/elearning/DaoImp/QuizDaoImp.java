@@ -7,6 +7,7 @@ package com.elearning.DaoImp;
 
 
 import com.elearning.Dao.QuizDao;
+import com.elearning.entities.Cours;
 import com.elearning.entities.Quiz;
 import java.util.List;
  
@@ -36,12 +37,8 @@ public class QuizDaoImp{
     public void delete(Long id) {
         repo.deleteById(id);
     }
-    
-    public List<Quiz> QuizByEnseignant(Long id){
-   return  repo.coursByEnseignant(id);
-    }    
-    public Quiz QuizByName(String name){
-   return  repo.coursByName(name);
+     public Quiz QuizByexamen(Long id){
+   return  repo.QuizByexamen(id);
     }
      
 }

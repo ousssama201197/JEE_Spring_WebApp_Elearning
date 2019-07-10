@@ -11,8 +11,11 @@ package com.elearning.Dao;
  * and open the template in the editor.
  */
 import com.elearning.entities.Document;
+import java.util.List;
 import java.util.Optional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
  
 public interface DocumentDao  extends CrudRepository<Document, Long>  {
 
@@ -46,5 +49,8 @@ public interface DocumentDao  extends CrudRepository<Document, Long>  {
     @Override
     public Iterable<Document> findAllById(Iterable<Long> itrbl); 
 
-     
+      
+  @Query(value = "SELECT c FROM Document c WHERE c.cours.id = :id") // ?1 , ?2 selon l'order dans la fonction 
+  public List<Document>  DocumentBycours(@Param("id") Long keyword);
+    
 } 
