@@ -46,4 +46,8 @@ public class EtudiantCoursDaoImp {
     public List<EtudiantCours> Coursinvalide(Boolean bool, String username) {
         return repo.coursInvalide(bool, username);
     }
+    
+     public List<EtudiantCours> alletudiantByCours(Long id) {
+        return repo.AlletudiantByCours(id);
+    }
 }

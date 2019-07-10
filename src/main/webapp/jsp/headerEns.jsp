@@ -64,8 +64,8 @@
                     <ul class="nav nav-pills nav-stacked custom-nav">
                         <li class="menu-list"><a href="<c:url value="/" />"><i class="fa fa-home"></i> <span>Home</span></a></li>
                         <li class="menu-list"><a href="<c:url value="/nouveau_cours" />"><i class="fa fa-file"></i> <span>Nouveau Cours</span></a>
-                        <li class="menu-list"><a href="<c:url value="/nouveau_document" />"><i class="fa fa-file-text"></i> <span>Nouveau Document</span></a></li>
-                        <li class="menu-list"><a href="<c:url value="/nouveau_examen" />"><i class="fa fa-pencil"></i> <span>Nouveau Examen</span></a></li>
+                        <li class="menu-list"><a href="<c:url value="/ajouter_document" />"><i class="fa fa-file-text"></i> <span>Nouveau Document</span></a></li>
+                        <li class="menu-list"><a href="<c:url value="/ajouter_examen" />"><i class="fa fa-pencil"></i> <span>Nouveau Examen</span></a></li>
                     </ul>
                     <!--sidebar nav end-->
 

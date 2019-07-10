@@ -9,6 +9,7 @@
 <!-- page heading end-->
 <!--body wrapper start-->
 <div class="wrapper">
+    ${message}
     <div class="row">
         <div class="col-sm-12">
             <section class="panel">
@@ -38,7 +39,7 @@
                             <td>${cours.etudiant.prenom}</td>
                             <td>${cours.etudiant.adress}</td>
                                 <td>
-                                    <a href="/edit"><button class="btn btn-primary">Valider</button></a>
+                                    <a href="<c:url value="/valider?id=${cours.id}&id2=${cours.etudiant.id}" />"<button class="btn btn-primary">Valider</button></a>
                                     <a href="/delete"><button class="btn btn-danger">Supprimer</button></a>
                                 </td>
                             </tr>

@@ -238,6 +238,8 @@ public class Login {
                         // infos
 
                         model.setViewName("home_enseigant");
+                          model.addObject("listecours", DaoEtudiantCours.Coursinvalide(false,username));
+                    model.setViewName("home_enseigant");
                         model.addObject("listeEtudiantCours", DaoEtudiantCours.CoursByEnseignant(etud.getUsername()));
                         return model;
                     }

@@ -10,23 +10,23 @@ package com.elearning.Dao;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.elearning.entities.Cours;
+import com.elearning.entities.Quiz;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
  
-public interface CoursDao  extends CrudRepository<Cours, Long>  {
+public interface QuizDao  extends CrudRepository<Quiz, Long>  {
 
     @Override
-    public void delete(Cours t);
+    public void delete(Quiz t);
 
     @Override
-    public Iterable<Cours> findAll();
+    public Iterable<Quiz> findAll();
 
     @Override
-    public Optional<Cours> findById(Long id);
+    public Optional<Quiz> findById(Long id);
 
     @Override
     public boolean existsById(Long id);
@@ -38,7 +38,7 @@ public interface CoursDao  extends CrudRepository<Cours, Long>  {
     public void deleteAll();
 
     @Override
-    public void deleteAll(Iterable<? extends Cours> itrbl);
+    public void deleteAll(Iterable<? extends Quiz> itrbl);
 
     @Override
     public void deleteById(Long id);
@@ -47,13 +47,13 @@ public interface CoursDao  extends CrudRepository<Cours, Long>  {
     public boolean equals(Object obj);
 
     @Override
-    public Iterable<Cours> findAllById(Iterable<Long> itrbl); 
+    public Iterable<Quiz> findAllById(Iterable<Long> itrbl); 
 
-    @Query(value = "SELECT c FROM Cours c WHERE c.enseignant.id = :idenseignant") // ?1 , ?2 selon l'order dans la fonction 
-    public List<Cours> coursByEnseignant(@Param("idenseignant") Long keyword);
+    @Query(value = "SELECT c FROM Quiz c WHERE c.enseignant.id = :idenseignant") // ?1 , ?2 selon l'order dans la fonction 
+    public List<Quiz> coursByEnseignant(@Param("idenseignant") Long keyword);
     
-  @Query(value = "SELECT c FROM Cours c WHERE c.name = :name") // ?1 , ?2 selon l'order dans la fonction 
-    public Cours coursByName(@Param("name") String keyword);
+  @Query(value = "SELECT c FROM Quiz c WHERE c.name = :name") // ?1 , ?2 selon l'order dans la fonction 
+    public Quiz coursByName(@Param("name") String keyword);
     
      
 } 

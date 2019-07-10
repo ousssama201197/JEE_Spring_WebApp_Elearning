@@ -29,10 +29,41 @@ public class Document {
     @ManyToOne
     @JoinColumn(name = "ideCours", referencedColumnName = "id")
     private Cours cours;
-    
     private String url;
     private String type;
     private String description;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Cours getCours() {
+        return cours;
+    }
+
+    public void setCours(Cours cours) {
+        this.cours = cours;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     
     
       

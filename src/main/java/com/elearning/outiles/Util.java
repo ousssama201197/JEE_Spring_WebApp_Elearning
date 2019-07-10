@@ -166,7 +166,7 @@ public class Util {
         return m.find();
     }
 
-    private static String getFilename(Part part) {
+    public static String getFilename(Part part) {
         for (String cd : part.getHeader("content-disposition").split(";")) {
             if (cd.trim().startsWith("filename")) {
                 return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
